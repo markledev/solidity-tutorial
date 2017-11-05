@@ -89,6 +89,9 @@ const createScData = contract.new.getData(
  }
 );
 
+const wallet = new Wallet(<private-key>);
+// or const wallet = Wallet.fromMnemonic(<12-word-secret-passphrase>);
+
 web3.eth.getTransactionCount(<your-wallet-address>, 'pending', (err1, nonce) => {
  web3.eth.getGasPrice((err2, gasPrice) => {
   const txObj = {
@@ -129,6 +132,10 @@ const incrementScData = contract.increment.getData(
   gas: 4700000
  }
 );
+
+
+const wallet = new Wallet(<private-key>);
+// or const wallet = Wallet.fromMnemonic(<12-word-secret-passphrase>);
 
 web3.eth.getTransactionCount(<your-wallet-address>, 'pending', (err1, nonce) => {
  web3.eth.getGasPrice((err2, gasPrice) => {
