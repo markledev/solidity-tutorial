@@ -68,4 +68,40 @@ contract SimpleCounter {
 }
 ```
 
+## Interact with Smart Contract via ReactJS/Client-side web application
+Create new smart contract (Assuming you are using Metamask)
+```
+import Wallet from 'ethers-wallet/wallet';
+const web3 = window.web3 (Metamask inject web3 inside the browser, alternative: import web3 from 'web3')
+const scAbi = []; // In live lecture, Viet will show how to get this scAbi from remix.ethereum.org
+const scBytecode = ''; // In live lecture, Viet will show how to get this scAbi from remix.ethereum.org
+
+const contract = web3.eth.contract(scAbi);
+const createScData = contract.new.getData(
+ arg1,
+ arg2,
+ {
+  data: scBytecode,
+  gas: 4700000
+ }
+);
+
+web3.eth.getTransactionCount(<your-wallet-address>, 'pending', (err1, nonce) => {
+ web3.eth.getGasPrice((err2, gasPrice => {
+  const txObj = {
+   nonce: web3.toHex(nonce),
+   gasLimit: web3.toHex(4700000),
+   gasPrice: web3.toHex(gasPrice),
+   data: createScData
+  }
+  
+  const signedTransaction = wallet.sign(txObj);
+  
+  web3.eth.sendRawTransaction(signedTransaction, (err3, txnHash) => {
+   console.log('txnHash to paste on Ropsten Etherscan', txnHash);
+  })
+ })
+})
+
+```
 ## Q&A (Will constantly be updated)
