@@ -6,6 +6,8 @@ Initial setup to write your first ReactJS D-apps
 
 ## To run this D-app
 ```
+git clone https://github.com/phuongvietle/solidity-tutorial.git <your-folder-name>
+cd <your-folder-name>
 yarn install
 yarn start
 ```
